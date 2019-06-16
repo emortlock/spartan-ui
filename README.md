@@ -1,9 +1,7 @@
-<center>
-  <img src="./site/assets/psi.svg" height="100" width="100" role="presentation" aria-hidden />
-  <h1 align="center">
+<h1 align="center">
+  <img src="./site/assets/psi.svg" height="100" width="100" role="presentation" aria-hidden /><br />
   Spartan UI
-  </h1>
-</center>
+</h1>
 
 React component library that doesn't make assumptions about styling leaving you free to use whatever approach and design you choose.
 
