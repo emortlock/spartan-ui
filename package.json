@@ -1,0 +1,64 @@
+{
+  "name": "spartan-ui",
+  "description": "React component library that focusses on getting the basics right leaving the design up to you",
+  "version": "0.1.0",
+  "repository": "github:emortlock/spartan-ui",
+  "homepage": "https://emortlock.github.io/spartan-ui/",
+  "author": "Edward Mortlock <edward@mortlock.dev>",
+  "main": "dist/index.js",
+  "umd:main": "dist/no-ui.umd.production.js",
+  "module": "dist/no-ui.es.production.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build:watch": "tsdx watch",
+    "build": "tsdx build",
+    "start": "styleguidist server",
+    "test": "tsdx test --env=jsdom"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "dependencies": {
+    "react-focus-lock": "^1.19.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.13",
+    "@types/react": "^16.8.19",
+    "@types/react-dom": "^16.8.4",
+    "babel-loader": "^8.0.6",
+    "husky": "^2.3.0",
+    "prettier": "^1.17.1",
+    "pretty-quick": "^1.11.0",
+    "react": "^16.8.6",
+    "react-docgen-typescript": "^1.12.4",
+    "react-dom": "^16.8.6",
+    "react-styleguidist": "^9.1.3",
+    "ts-loader": "^6.0.2",
+    "tsdx": "^0.6.1",
+    "tslib": "^1.9.3",
+    "typescript": "^3.5.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "keywords": [
+    "react",
+    "react-components",
+    "accessible",
+    "semantic",
+    "no-ui"
+  ],
+  "bugs": "https://github.com/emortlock/spartan-ui/issues",
+  "license": "MIT"
+}
