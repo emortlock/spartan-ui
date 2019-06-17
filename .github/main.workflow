@@ -50,5 +50,5 @@ action "Deploy" {
     PUBLISH_BRANCH = "gh-pages"
   }
   needs = ["Build"]
-  secrets = ["ACCESS_TOKEN"]
+  secrets = ["ACTIONS_DEPLOY_KEY"]
 }
