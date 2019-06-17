@@ -16,6 +16,7 @@
     "build:watch": "tsdx watch",
     "build": "tsdx build",
     "start": "styleguidist server",
+    "docs": "styleguidist build",
     "test": "tsdx test --env=jsdom"
   },
   "peerDependencies": {

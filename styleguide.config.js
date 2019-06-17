@@ -5,6 +5,7 @@ const isDev = NODE_ENV === 'development'
 
 module.exports = {
   title: 'Spartan UI',
+  styleguideDir: 'docs',
   sections: [
     {
       name: 'About',
