@@ -1,6 +1,6 @@
 workflow "Test PR" {
   on = "pull_request"
-  resolves = ["Test"]
+  resolves = ["Lint", "Test", "Build Lib"]
 }
 
 action "Filter PR Commits" {
@@ -17,6 +17,18 @@ action "Install" {
 action "Test" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   args = "test"
+  needs = ["Install"]
+}
+
+action "Lint" {
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+  args = "run lint"
+  needs = ["Install"]
+}
+
+action "Build Lib" {
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+  args = "run build"
   needs = ["Install"]
 }
 
