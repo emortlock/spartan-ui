@@ -1,27 +1,30 @@
-import { useEffect, RefObject } from 'react'
+import { useEffect, useRef, RefObject } from 'react'
 
 export default (ref: RefObject<HTMLElement>, trigger: boolean) => {
-  let originalFocus: HTMLElement | null
+  const originalFocusRef = useRef<HTMLElement>()
 
   useEffect(() => {
-    if (!ref.current) {
+    const { current } = ref
+    const { current: originalFocus } = originalFocusRef
+
+    if (!current) {
       return
     }
 
-    if (document.activeElement !== ref.current) {
-      originalFocus = document.activeElement as HTMLElement
+    if (document.activeElement !== current) {
+      originalFocusRef.current = document.activeElement as HTMLElement
     }
 
     if (trigger) {
-      ref.current.focus()
+      current.focus()
     } else if (originalFocus) {
       originalFocus.focus()
     }
 
     return () => {
-      if (document.activeElement === ref.current && originalFocus) {
+      if (document.activeElement === current && originalFocus) {
         originalFocus.focus()
       }
     }
-  }, [trigger])
+  }, [ref, trigger])
 }

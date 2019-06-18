@@ -10,7 +10,7 @@ describe('AccordionPanel', () => {
         {({ headingProps, bodyProps }) => (
           <>
             <h3 {...headingProps}>Accordion</h3>
-            <div {...bodyProps} hidden={!open}>
+            <div {...bodyProps}>
               <p>Hello world</p>
             </div>
           </>

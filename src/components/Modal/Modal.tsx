@@ -30,11 +30,8 @@ const Modal: FunctionComponent<ModalProps> = ({
   const modalRef = useRef<HTMLElement>(null)
 
   useBodyScrollLock(open)
-
-  if (!alert) {
-    useClickAway(modalRef, onClose)
-    useOnKeyPress(KEY.ESCAPE, onClose)
-  }
+  useClickAway(modalRef, onClose, alert)
+  useOnKeyPress(KEY.ESCAPE, onClose, alert)
 
   const headingProps = {
     id: `${id}-heading`,
