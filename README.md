@@ -76,6 +76,8 @@ import { Button } from 'spartan-ui'
       backgroundColor: '#c62828',
       padding: '0.5rem 1rem',
       borderRadius: '2px',
+      color: '#fff',
+      border: 0,
     }}
   >
     Kick
