@@ -17,7 +17,8 @@
     "build": "tsdx build",
     "start": "styleguidist server",
     "docs": "styleguidist build",
-    "test": "tsdx test --env=jsdom"
+    "test": "tsdx test --env=jsdom",
+    "test:coverage": "tsdx test --env=jsdom --coverage"
   },
   "peerDependencies": {
     "react": ">=16"
