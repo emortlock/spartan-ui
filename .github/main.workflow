@@ -10,7 +10,7 @@ action "Filter PR Commits" {
 
 action "Install" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
-  args = "install"
+  args = "ci"
   needs = ["Filter PR Commits"]
 }
 
@@ -32,7 +32,7 @@ action "Filter Master Branch" {
 
 action "Install (Docs)" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
-  args = "install"
+  args = "ci"
   needs = ["Filter Master Branch"]
 }
 
