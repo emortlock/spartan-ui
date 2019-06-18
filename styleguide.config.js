@@ -42,6 +42,7 @@ module.exports = {
     },
     resolve: {
       alias: {
+        'spartan-ui': path.resolve(__dirname, 'src'),
         demo: path.resolve(__dirname, 'site'),
       },
       extensions: [
