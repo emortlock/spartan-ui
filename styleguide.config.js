@@ -1,4 +1,7 @@
 const path = require('path')
+
+const CopyPlugin = require('copy-webpack-plugin')
+
 const { NODE_ENV } = process.env
 
 const isDev = NODE_ENV === 'development'
@@ -40,6 +43,11 @@ module.exports = {
         },
       ],
     },
+    plugins: [
+      new CopyPlugin([
+        { from: path.resolve(__dirname, 'site', 'assets'), to: 'assets' },
+      ]),
+    ],
     resolve: {
       alias: {
         'spartan-ui': path.resolve(__dirname, 'src'),

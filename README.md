@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="./site/assets/psi.svg" height="100" width="100" role="presentation" aria-hidden /><br />
+  <img src="https://emortlock.github.io/spartan-ui/assets/psi.svg" height="100" width="100" role="presentation" aria-hidden /><br />
   Spartan UI
 </h1>
 
