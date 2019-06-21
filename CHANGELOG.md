@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## 0.1.0 (2019-06-21)
 
+### Features
+
+Initial release of library:
+
+- Accordions
+- Alerts
+- Breadcrumbs
+- Buttons
+- Dropdowns
+- Form fields, labels and input controls
+- Modals
+- Progress indicators
+
 ### Bug Fixes
 
 - correct index exports ([5d18529](https://github.com/emortlock/spartan-ui/commit/5d18529))
