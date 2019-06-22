@@ -26,7 +26,7 @@
     "react": ">=16"
   },
   "dependencies": {
-    "react-focus-lock": "^1.19.1"
+    "react-focus-lock": "^2.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.0.0",
