@@ -29,6 +29,8 @@
     "react-focus-lock": "^1.19.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
     "@testing-library/react": "^8.0.1",
     "@types/jest": "^24.0.13",
     "@types/react": "^16.8.19",
@@ -63,6 +65,7 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "pretty-quick --staged"
     }
   },
