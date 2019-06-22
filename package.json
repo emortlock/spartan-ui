@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build:watch": "tsdx watch",
-    "build": "tsdx build",
+    "build": "rimraf dist && tsdx build",
     "docs": "styleguidist build",
     "lint": "eslint src/** -c eslint.config.js --ext ts,tsx",
     "release": "standard-version",
@@ -56,6 +56,7 @@
     "react-docgen-typescript": "^1.12.4",
     "react-dom": "^16.8.6",
     "react-styleguidist": "^9.1.3",
+    "rimraf": "^2.6.3",
     "standard-version": "^6.0.1",
     "ts-loader": "^6.0.2",
     "tsdx": "^0.7.2",
