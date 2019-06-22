@@ -6,8 +6,7 @@
   "homepage": "https://emortlock.github.io/spartan-ui/",
   "author": "Edward Mortlock <edward@mortlock.dev>",
   "main": "dist/index.js",
-  "umd:main": "dist/no-ui.umd.production.js",
-  "module": "dist/no-ui.es.production.js",
+  "module": "dist/spartan-ui.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
