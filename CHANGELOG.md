@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/emortlock/spartan-ui/compare/v0.1.1...v0.1.2) (2019-06-22)
+
+### Build System
+
+- correct release script ([c8cfa6b](https://github.com/emortlock/spartan-ui/commit/c8cfa6b))
+
 ### [0.1.1](https://github.com/emortlock/spartan-ui/compare/v0.1.0...v0.1.1) (2019-06-22)
 
 ### Bug Fixes
