@@ -1,65 +1,72 @@
-workflow "Test PR" {
+workflow "PR" {
   on = "pull_request"
-  resolves = ["Lint", "Test", "Build Lib"]
+  resolves = ["PR: Lint", "PR: Test", "PR: Build Lib", "PR: Build Docs"]
 }
 
-action "Filter PR Commits" {
+action "PR: Is Commit" {
   uses = "actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da"
   args = "action 'opened|synchronize'"
 }
 
-action "Install" {
+action "PR: Install" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   args = "ci"
-  needs = ["Filter PR Commits"]
+  needs = ["PR: Is Commit"]
 }
 
-action "Test" {
+action "PR: Test" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   args = "test"
-  needs = ["Install"]
+  needs = ["PR: Install"]
 }
 
-action "Lint" {
+action "PR: Lint" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   args = "run lint"
-  needs = ["Install"]
+  needs = ["PR: Install"]
 }
 
-action "Build Lib" {
+action "PR: Build Lib" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   args = "run build"
-  needs = ["Install"]
+  needs = ["PR: Install"]
 }
 
-workflow "Deploy Docs Site" {
+action "PR: Build Docs" {
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+  args = "run docs"
+  needs = ["PR: Install"]
+}
+
+
+workflow "Release" {
   on = "push"
-  resolves = ["Deploy"]
+  resolves = ["Release: Deploy to GH Pages"]
 }
 
-action "Filter Master Branch" {
+action "Release: Is Master" {
   uses = "actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da"
   args = "branch master"
 }
 
-action "Install (Docs)" {
+action "Release: Install" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   args = "ci"
-  needs = ["Filter Master Branch"]
+  needs = ["Release: Is Master"]
 }
 
-action "Build" {
+action "Release: Build Docs" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   args = "run docs"
-  needs = ["Install (Docs)"]
+  needs = ["Release: Install"]
 }
 
-action "Deploy" {
+action "Release: Deploy to GH Pages" {
   uses = "peaceiris/actions-gh-pages@v1.0.1"
   env = {
     PUBLISH_DIR = "./docs"
     PUBLISH_BRANCH = "gh-pages"
   }
-  needs = ["Build"]
+  needs = ["Release: Build Docs"]
   secrets = ["ACTIONS_DEPLOY_KEY"]
 }
