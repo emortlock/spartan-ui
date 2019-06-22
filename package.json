@@ -76,12 +76,6 @@
       "<rootDir>/build/setupTests.ts"
     ]
   },
-  "prettier": {
-    "printWidth": 80,
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "all"
-  },
   "keywords": [
     "react",
     "react-components",
