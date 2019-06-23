@@ -1,7 +1,7 @@
 ### Standard
 
 ```jsx
-import { Button } from '../Button'
+import { Button, Progress } from 'spartan-ui'
 intialState = { loading: false }
 ;<div>
   <style

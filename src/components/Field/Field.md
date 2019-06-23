@@ -1,9 +1,7 @@
 ### Standard
 
 ```jsx
-import { Input } from '../Input'
-import { Label } from '../Label'
-import { Alert } from '../Alert'
+import { Alert, Input, Label } from 'spartan-ui'
 initialState = { value: '', error: false, success: false }
 const handleChange = e => {
   setState({ value: e.target.value })
@@ -43,8 +41,7 @@ const handleBlur = e => {
 ### Option List
 
 ```jsx
-import { InputOption } from '../Input'
-import { Label } from '../Label'
+import { InputOption, Label } from 'spartan-ui'
 const options = [
   { value: 'shield', label: 'Aspis' },
   { value: 'spear', label: 'Dory' },

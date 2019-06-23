@@ -1,4 +1,7 @@
+### Standard
+
 ```jsx
+import { Select } from 'spartan-ui'
 const options = [
   { label: 'Eurysthenes', value: 'Eurysthenes' },
   { label: 'Aegis I', value: 'Aegis' },

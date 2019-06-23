@@ -2,6 +2,7 @@
 
 ```jsx
 import { getTitle } from 'demo/data'
+import { Alert } from 'spartan-ui'
 const alert = getTitle()
 ;<>
   <Alert>{alert}</Alert>
@@ -11,7 +12,7 @@ const alert = getTitle()
 ### Dismissable
 
 ```jsx
-import { Button } from '../Button'
+import { Alert, Button } from 'spartan-ui'
 import { getTitle } from 'demo/data'
 const alert = getTitle()
 initialState = { open: true }

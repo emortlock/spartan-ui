@@ -2,7 +2,7 @@
 
 ```jsx
 import { getTitle, getParagraph } from 'demo/data'
-import { Button } from '../Button'
+import { Button, Modal } from 'spartan-ui'
 const heading = getTitle()
 const body = getParagraph()
 initialState = { open: false }
@@ -49,7 +49,7 @@ const handleClose = () => {
 
 ```jsx
 import { getTitle, getParagraph } from 'demo/data'
-import { Button } from '../Button'
+import { Button, Modal } from 'spartan-ui'
 const heading = getTitle()
 const body = getParagraph()
 initialState = { open: false }

@@ -1,7 +1,7 @@
 ### Checkbox
 
 ```jsx
-import { Label } from '../Label'
+import { InputOption, Label } from 'spartan-ui'
 ;<>
   <Label>
     <InputOption name="input-option-1" value="accept" /> With it or on it
@@ -12,7 +12,7 @@ import { Label } from '../Label'
 ### Radio
 
 ```jsx
-import { Label } from '../Label'
+import { InputOption, Label } from 'spartan-ui'
 ;<>
   <Label>
     <InputOption name="input-option-2" type="radio" value="madness" /> Madness

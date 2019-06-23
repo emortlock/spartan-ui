@@ -1,3 +1,8 @@
+### Standard
+
 ```jsx
-<Label>Name</Label>
+import { Label } from 'spartan-ui'
+;<>
+  <Label>Name</Label>
+</>
 ```
