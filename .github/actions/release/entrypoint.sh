@@ -50,7 +50,7 @@ fi
 git checkout master
 # END
 
-npm release
+npm run release
 
 git push --follow-tags origin master
 
