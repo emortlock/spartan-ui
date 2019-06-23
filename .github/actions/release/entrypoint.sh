@@ -2,6 +2,8 @@
 
 set -e
 
+echo "log: trigger event ${GITHUB_EVENT_NAME}"
+
 # START - Deploy Key Setup
 # https://github.com/peaceiris/actions-gh-pages/blob/v1.0.1/entrypoint.sh#L3-L11
 if [ -z "${ACTIONS_DEPLOY_KEY}" ]; then
@@ -24,7 +26,14 @@ fi
 # https://github.com/actions/npm/blob/v2.0.0/entrypoint.sh#L6-L12
 NPM_CONFIG_USERCONFIG="${NPM_CONFIG_USERCONFIG-"$HOME/.npmrc"}"
 NPM_REGISTRY_URL="${NPM_REGISTRY_URL-registry.npmjs.org}"
-printf "//%s/:_authToken=%s\\nregistry=%s" "$NPM_REGISTRY_URL" "$NPM_AUTH_TOKEN" "$NPM_REGISTRY_URL" > "$NPM_CONFIG_USERCONFIG"
+NPM_STRICT_SSL="${NPM_STRICT_SSL-true}"
+NPM_REGISTRY_SCHEME="https"
+if ! $NPM_STRICT_SSL
+then
+    NPM_REGISTRY_SCHEME="http"
+fi
+
+printf "//%s/:_authToken=%s\\nregistry=%s\\nstrict-ssl=%s" "$NPM_REGISTRY_URL" "$NPM_AUTH_TOKEN" "${NPM_REGISTRY_SCHEME}://$NPM_REGISTRY_URL" "${NPM_STRICT_SSL}" > "$NPM_CONFIG_USERCONFIG"
 chmod 0600 "$NPM_CONFIG_USERCONFIG"
 # END
 
