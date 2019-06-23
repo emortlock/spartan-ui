@@ -69,12 +69,13 @@ action "Release: Lint" {
 action "Release: Build Lib" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   args = "run build"
-  needs = ["Release: Lint", "Release: Test"]
+  needs = ["Release: Install"]
 }
 
 action "Release: Version and Publish" {
   uses = "./.github/actions/release"
   needs = ["Release: Build Lib"]
+  needs = ["Release: Lint", "Release: Test", "Release: Build Lib"]
   secrets = ["ACTIONS_DEPLOY_KEY", "NPM_AUTH_TOKEN"]
 }
 

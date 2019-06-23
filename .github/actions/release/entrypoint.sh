@@ -50,4 +50,8 @@ fi
 git checkout master
 # END
 
-sh -c "npm release && git push --follow-tags origin master && npm publish"
+npm release
+
+git push --follow-tags origin master
+
+npm publish
