@@ -38,7 +38,6 @@ action "PR: Build Docs" {
   needs = ["PR: Install"]
 }
 
-
 workflow "Release" {
   on = "push"
   resolves = ["Release: Deploy to GH Pages"]
@@ -55,10 +54,33 @@ action "Release: Install" {
   needs = ["Release: Is Master"]
 }
 
+action "Release: Test" {
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+  args = "test"
+  needs = ["Release: Install"]
+}
+
+action "Release: Lint" {
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+  args = "run lint"
+  needs = ["Release: Install"]
+}
+
+action "Release: Build Lib" {
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+  args = "run build"
+  needs = ["Release: Lint", "Release: Test"]
+}
+
+action "Release: Version and Publish" {
+  uses = "./.github/actions/release"
+  needs = ["Release: Build Lib"]
+}
+
 action "Release: Build Docs" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   args = "run docs"
-  needs = ["Release: Install"]
+  needs = ["Release: Version and Publish"]
 }
 
 action "Release: Deploy to GH Pages" {
