@@ -2,10 +2,12 @@
 
 set -e
 
-echo "log: trigger event ${GITHUB_EVENT_NAME}"
+echo "info: trigger event ${GITHUB_EVENT_NAME}"
 
-# START - Deploy Key Setup
-# https://github.com/peaceiris/actions-gh-pages/blob/v1.0.1/entrypoint.sh#L3-L11
+# Deploy Key Setup
+
+echo "info: setting up deploy key"
+
 if [ -z "${ACTIONS_DEPLOY_KEY}" ]; then
     echo "error: not found ACTIONS_DEPLOY_KEY"
     exit 1
@@ -15,15 +17,16 @@ mkdir /root/.ssh
 ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
 echo "${ACTIONS_DEPLOY_KEY}" > /root/.ssh/id_rsa
 chmod 400 /root/.ssh/id_rsa
-# END
+
+# npm Setup
+
+echo "info: setting up npm"
 
 if [ -z "${NPM_AUTH_TOKEN}" ]; then
     echo "error: not found NPM_AUTH_TOKEN"
     exit 1
 fi
 
-# START - npm Setup
-# https://github.com/actions/npm/blob/v2.0.0/entrypoint.sh#L6-L12
 NPM_CONFIG_USERCONFIG="${NPM_CONFIG_USERCONFIG-"$HOME/.npmrc"}"
 NPM_REGISTRY_URL="${NPM_REGISTRY_URL-registry.npmjs.org}"
 NPM_STRICT_SSL="${NPM_STRICT_SSL-true}"
@@ -35,10 +38,11 @@ fi
 
 printf "//%s/:_authToken=%s\\nregistry=%s\\nstrict-ssl=%s" "$NPM_REGISTRY_URL" "$NPM_AUTH_TOKEN" "${NPM_REGISTRY_SCHEME}://$NPM_REGISTRY_URL" "${NPM_STRICT_SSL}" > "$NPM_CONFIG_USERCONFIG"
 chmod 0600 "$NPM_CONFIG_USERCONFIG"
-# END
 
-# START - Git Setup
-# https://github.com/peaceiris/actions-gh-pages/blob/master/entrypoint.sh#L25-L29
+
+# Git Setup
+echo "info: setting up git"
+
 git init
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
@@ -48,10 +52,12 @@ if ! git config remote.origin.url > /dev/null; then
 fi
 
 git checkout master
-# END
 
+echo "info: running release script"
 npm run release
 
+echo "info: pushing new version"
 git push --follow-tags origin master
 
+echo "info: publishing to npm"
 npm publish
