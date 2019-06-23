@@ -1,7 +1,7 @@
 ### Standard
 
 ```jsx
-import { Button } from '../Button'
+import { Button, Dropdown } from 'spartan-ui'
 const menuItems = [
   'Aphrodite',
   'Apollo',

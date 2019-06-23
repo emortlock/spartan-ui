@@ -1,5 +1,8 @@
 ### Standard
 
 ```jsx
-<BreadcrumbItem active>Sparta</BreadcrumbItem>
+import { BreadcrumbItem } from 'spartan-ui'
+;<>
+  <BreadcrumbItem active>Sparta</BreadcrumbItem>
+</>
 ```

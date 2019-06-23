@@ -2,6 +2,7 @@
 
 ```jsx
 import { getTitle, getParagraph } from 'demo/data'
+import { AccordionPanel } from 'spartan-ui'
 const heading = getTitle(0)
 const body = getParagraph(0)
 initialState = { open: false }

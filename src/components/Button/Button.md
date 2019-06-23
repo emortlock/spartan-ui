@@ -1,7 +1,10 @@
 ### Standard
 
 ```jsx
-<Button>Button</Button>
+import { Button } from 'spartan-ui'
+;<>
+  <Button>Button</Button>
+</>
 ```
 
 ```jsx
@@ -11,6 +14,7 @@
 ```
 
 ```jsx
+import { Button } from 'spartan-ui'
 initialState = { submitted: false }
 ;<form
   onSubmit={e => {
@@ -28,6 +32,7 @@ initialState = { submitted: false }
 ### Toggle
 
 ```jsx
+import { Button } from 'spartan-ui'
 initialState = { isActive: false }
 ;<Button
   active={state.isActive}

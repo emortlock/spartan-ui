@@ -2,7 +2,7 @@
 
 ```jsx
 import { getTitle, getParagraph } from 'demo/data'
-import AccordionPanel from './AccordionPanel'
+import { Accordion, AccordionPanel } from 'spartan-ui'
 const panels = Array(3)
   .fill(0)
   .map(() => ({ heading: getTitle(), body: getParagraph() }))
@@ -30,7 +30,7 @@ const panels = Array(3)
 
 ```jsx
 import { getTitle, getParagraph } from 'demo/data'
-import AccordionPanel from './AccordionPanel'
+import { Accordion, AccordionPanel } from 'spartan-ui'
 const panels = Array(3)
   .fill(0)
   .map(() => ({ heading: getTitle(), body: getParagraph() }))
