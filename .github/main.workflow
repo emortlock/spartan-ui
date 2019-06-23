@@ -10,7 +10,7 @@ action "Is Master Branch" {
 
 action "Should Not Ignore" {
   uses = "./.github/actions/filter-commit-message"
-  args = \[skip-ci\]
+  args = "\[skip-ci\]"
 }
 
 workflow "PR" {
