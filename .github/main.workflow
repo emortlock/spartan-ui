@@ -1,16 +1,18 @@
+action "Should Not Ignore" {
+  uses = "./.github/actions/filter-commit-message"
+  args = "skip-ci"
+}
+
 action "Is PR Commit" {
   uses = "actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da"
   args = "action 'opened|synchronize'"
+  needs = ["Should Not Ignore"]
 }
 
 action "Is Master Branch" {
   uses = "actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da"
   args = "branch master"
-}
-
-action "Should Not Ignore" {
-  uses = "./.github/actions/filter-commit-message"
-  args = "skip-ci"
+  needs = ["Should Not Ignore"]
 }
 
 workflow "PR" {
@@ -21,7 +23,7 @@ workflow "PR" {
 action "PR: Install" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   args = "ci"
-  needs = ["Should Not Ignore", "Is PR Commit"]
+  needs = ["Is PR Commit"]
 }
 
 action "PR: Test" {
@@ -61,7 +63,7 @@ action "Release: Is Master" {
 action "Release: Install" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   args = "ci"
-  needs = ["Should Not Ignore", "Is Master Branch"]
+  needs = ["Is Master Branch"]
 }
 
 action "Release: Test" {
