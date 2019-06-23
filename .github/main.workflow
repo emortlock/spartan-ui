@@ -1,17 +1,27 @@
+action "Is PR Commit" {
+  uses = "actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da"
+  args = "action 'opened|synchronize'"
+}
+
+action "Is Master Branch" {
+  uses = "actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da"
+  args = "branch master"
+}
+
+action "Should Not Ignore" {
+  uses = "./.github/actions/filter-commit-message"
+  args = \[skip-ci\]
+}
+
 workflow "PR" {
   on = "pull_request"
   resolves = ["PR: Lint", "PR: Test", "PR: Build Lib", "PR: Build Docs"]
 }
 
-action "PR: Is Commit" {
-  uses = "actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da"
-  args = "action 'opened|synchronize'"
-}
-
 action "PR: Install" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   args = "ci"
-  needs = ["PR: Is Commit"]
+  needs = ["Should Not Ignore", "Is PR Commit"]
 }
 
 action "PR: Test" {
@@ -51,7 +61,7 @@ action "Release: Is Master" {
 action "Release: Install" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   args = "ci"
-  needs = ["Release: Is Master"]
+  needs = ["Should Not Ignore", "Is Master Branch"]
 }
 
 action "Release: Test" {
@@ -74,7 +84,6 @@ action "Release: Build Lib" {
 
 action "Release: Version and Publish" {
   uses = "./.github/actions/release"
-  needs = ["Release: Build Lib"]
   needs = ["Release: Lint", "Release: Test", "Release: Build Lib"]
   secrets = ["ACTIONS_DEPLOY_KEY", "GITHUB_TOKEN", "NPM_AUTH_TOKEN"]
 }

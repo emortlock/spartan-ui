@@ -16,7 +16,7 @@
     "build": "rimraf dist && tsdx build",
     "docs": "styleguidist build",
     "lint": "eslint src/** -c eslint.config.js --ext ts,tsx",
-    "release": "standard-version",
+    "release": "standard-version -m \"chore(release): %s [skip-ci]\" ",
     "start": "styleguidist server",
     "test:coverage": "tsdx test --env=jsdom --coverage",
     "test": "tsdx test --env=jsdom"

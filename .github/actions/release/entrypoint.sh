@@ -2,11 +2,11 @@
 
 set -e
 
-echo "info: trigger event ${GITHUB_EVENT_NAME}"
+echo "INFO: trigger event ${GITHUB_EVENT_NAME}"
 
 # Deploy Key Setup
 
-echo "info: setting up deploy key"
+echo "INFO: setting up deploy key"
 
 if [ -z "${ACTIONS_DEPLOY_KEY}" ]; then
     echo "error: not found ACTIONS_DEPLOY_KEY"
@@ -20,7 +20,7 @@ chmod 400 /root/.ssh/id_rsa
 
 # npm Setup
 
-echo "info: setting up npm"
+echo "INFO: setting up npm"
 
 if [ -z "${NPM_AUTH_TOKEN}" ]; then
     echo "error: not found NPM_AUTH_TOKEN"
@@ -41,7 +41,7 @@ chmod 0600 "$NPM_CONFIG_USERCONFIG"
 
 
 # Git Setup
-echo "info: setting up git"
+echo "INFO: setting up git"
 
 git init
 git config user.name "${GITHUB_ACTOR}"
@@ -53,11 +53,11 @@ fi
 
 git checkout master
 
-echo "info: running release script"
+echo "INFO: running release script"
 npm run release
 
-echo "info: pushing new version"
+echo "INFO: pushing new version"
 git push --no-verify --follow-tags origin master
 
-echo "info: publishing to npm"
+echo "INFO: publishing to npm"
 npm publish
