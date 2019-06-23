@@ -33,7 +33,11 @@ chmod 0600 "$NPM_CONFIG_USERCONFIG"
 git init
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-git remote add origin "git@github.com:${GITHUB_REPOSITORY}.git"
+
+if ! git config remote.origin.url > /dev/null; then
+    git remote add origin "git@github.com:${GITHUB_REPOSITORY}.git"
+fi
+
 git checkout master
 # END
 
