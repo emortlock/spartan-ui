@@ -57,7 +57,7 @@ echo "info: running release script"
 npm run release
 
 echo "info: pushing new version"
-git push --follow-tags origin master
+git push --no-verify --follow-tags origin master
 
 echo "info: publishing to npm"
 npm publish

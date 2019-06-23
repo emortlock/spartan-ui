@@ -76,7 +76,7 @@ action "Release: Version and Publish" {
   uses = "./.github/actions/release"
   needs = ["Release: Build Lib"]
   needs = ["Release: Lint", "Release: Test", "Release: Build Lib"]
-  secrets = ["ACTIONS_DEPLOY_KEY", "NPM_AUTH_TOKEN"]
+  secrets = ["ACTIONS_DEPLOY_KEY", "GITHUB_TOKEN", "NPM_AUTH_TOKEN"]
 }
 
 action "Release: Build Docs" {
