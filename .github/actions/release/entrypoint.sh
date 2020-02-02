@@ -54,7 +54,7 @@ fi
 git checkout master
 
 echo "INFO: running release script"
-npm run release
+npm run ci:release
 
 echo "INFO: pushing new version"
 git push --no-verify --follow-tags origin master

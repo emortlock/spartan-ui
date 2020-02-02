@@ -17,41 +17,40 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         node: [10, 12, 13]
         exclude:
-        - os: ubuntu-latest
-          node: 10
+          - os: ubuntu-latest
+            node: 10
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node }}
-    - run: npm ci
-    - run: npm run build
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm run build
 
   build:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 10
-    - run: npm ci
-    - run: npm run build
-    - run: npm run docs
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: npm ci
+      - run: npm run build
+      - run: npm run docs
 
   test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 10
-    - run: npm ci
-    - run: npm run lint
-    - run: npm test
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: npm ci
+      - run: npm run ci:test
 
   publish:
     needs: [test]
@@ -59,18 +58,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 10
-    - run: npm run build
-    - run: npm run docs
-    - name: release
-      uses: ./.github/actions/release 
-      env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        ACTIONS_DEPLOY_KEY: ${{secrets.ACTIONS_DEPLOY_KEY}}
-        NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-    - run: npx gh-pages -d "docs" -b "gh-pages" -r "https://${ACTIONS_DEPLOY_KEY}:x-oauth-basic@github.com/${GITHUB_REPOSITORY}" -x
-      env:
-        ACTIONS_DEPLOY_KEY: ${{secrets.ACTIONS_DEPLOY_KEY}}
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: npm run build
+      - run: npm run docs
+      - name: release
+        uses: ./.github/actions/release
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          ACTIONS_DEPLOY_KEY: ${{secrets.ACTIONS_DEPLOY_KEY}}
+          NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - run: npx gh-pages -d "docs" -b "gh-pages" -r "https://${ACTIONS_DEPLOY_KEY}:x-oauth-basic@github.com/${GITHUB_REPOSITORY}" -x
+        env:
+          ACTIONS_DEPLOY_KEY: ${{secrets.ACTIONS_DEPLOY_KEY}}
