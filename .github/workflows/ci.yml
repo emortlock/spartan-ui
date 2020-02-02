@@ -10,6 +10,7 @@ on:
 
 jobs:
   support:
+    if: github.event_name == 'pull_request'
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -28,7 +29,7 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-  build:
+  test:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
 
@@ -40,20 +41,9 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run docs
-
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 10
-      - run: npm ci
       - run: npm run ci:test
 
   publish:
-    needs: [test]
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
 
@@ -63,6 +53,7 @@ jobs:
         with:
           node-version: 10
       - run: npm ci
+      - run: npm run ci:test
       - run: npm run build
       - run: npm run docs
       - name: release
