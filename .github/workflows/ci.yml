@@ -26,16 +26,24 @@ jobs:
     - run: npm ci
     - run: npm run build
     - run: npm run docs
+    - name: upload workspace
+      uses: actions/upload-artifact@v1
+      with:
+        name: workspace
+        path: ./
 
   test:
     needs: [build]
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
         node-version: 10
+    - name: download workspace
+      uses: actions/upload-artifact@v1
+      with:
+        name: workspace
     - run: npm run lint
     - run: npm test
 
@@ -45,10 +53,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
         node-version: 10
+    - name: download workspace
+      uses: actions/upload-artifact@v1
+      with:
+        name: workspace
     - name: release
       uses: ./.github/actions/release 
       env:
