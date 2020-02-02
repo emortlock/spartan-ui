@@ -25,10 +25,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node }}
-    - name: download workspace
-      uses: actions/upload-artifact@v1
-      with:
-        name: workspace_install
     - run: npm ci
     - run: npm run build
     - run: npm run docs
@@ -42,10 +38,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 10
-    - name: download workspace
-      uses: actions/upload-artifact@v1
-      with:
-        name: workspace_install
     - run: npm ci
     - run: npm run build
     - run: npm run docs
@@ -57,10 +49,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 10
-    - name: download workspace
-      uses: actions/upload-artifact@v1
-      with:
-        name: workspace_install
     - run: npm ci
     - run: npm run lint
     - run: npm test
