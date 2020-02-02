@@ -37,7 +37,7 @@ jobs:
     - run: npm test
   publish:
     needs: [build, test]
-    if: github.event_name === 'push'
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/setup-node@v1
