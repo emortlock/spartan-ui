@@ -12,14 +12,13 @@
     "dist"
   ],
   "scripts": {
-    "ci:test": "npm run lint && npm run test:coverage",
+    "ci:test": "npm run lint && npm run test -- --coverage",
+    "ci:release": "standard-version -m \"chore: v%s release [skip-ci]\" ",
     "build:watch": "tsdx watch",
     "build": "rimraf dist && tsdx build",
     "docs": "styleguidist build",
     "lint": "eslint src/** -c eslint.config.js --ext ts,tsx",
-    "release": "standard-version -m \"chore: v%s release [skip-ci]\" ",
     "start": "styleguidist server",
-    "test:coverage": "tsdx test --env=jsdom --coverage",
     "test": "tsdx test --env=jsdom"
   },
   "peerDependencies": {
