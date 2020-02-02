@@ -6,6 +6,10 @@ const { ACTIONS_DEPLOY_KEY, GITHUB_REPOSITORY } = process.env
 ghpages.publish('dist', {
   branch: 'gh-pages',
   repo: `https://${ACTIONS_DEPLOY_KEY}:x-oauth-basic@github.com/${GITHUB_REPOSITORY}.git`,
-  silent: true,
   message: `docs: v${version} release`,
+  user: {
+    name: GITHUB_ACTOR,
+    email: `${GITHUB_ACTOR}@users.noreply.github.com`,
+  },
+  silent: true,
 })
