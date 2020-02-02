@@ -1,7 +1,7 @@
 {
   "name": "spartan-ui",
   "description": "React component library that focusses on getting the basics right leaving the design up to you",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "repository": "github:emortlock/spartan-ui",
   "homepage": "https://emortlock.github.io/spartan-ui/",
   "author": "Edward Mortlock <edward@mortlock.dev>",
