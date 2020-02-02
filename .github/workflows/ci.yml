@@ -9,31 +9,48 @@ on:
       - master
 
 jobs:
-  build:
+  install:
     if: "!contains(github.event.head_commit.message, 'skip-ci')"
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 10
+    - run: npm ci
+    - name: upload workspace
+      uses: actions/upload-artifact@v1
+      with:
+        name: workspace_install
+        path: ./
+
+  support:
+    needs: [install]
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
         node: [10.x, 12.x, 13.x]
+        exclude:
+        - os: ubuntu-latest
+          node: 10
 
     steps:
-    - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node }}
+    - name: download workspace
+      uses: actions/upload-artifact@v1
+      with:
+        name: workspace_install
     - run: npm ci
     - run: npm run build
     - run: npm run docs
-    - name: upload workspace
-      uses: actions/upload-artifact@v1
-      with:
-        name: workspace
-        path: ./
 
-  test:
-    needs: [build]
+  build:
+    needs: [install]
     runs-on: ubuntu-latest
 
     steps:
@@ -43,7 +60,27 @@ jobs:
     - name: download workspace
       uses: actions/upload-artifact@v1
       with:
-        name: workspace
+        name: workspace_install
+    - run: npm run build
+    - run: npm run docs
+    - name: upload workspace
+      uses: actions/upload-artifact@v1
+      with:
+        name: workspace_build
+        path: ./
+
+  test:
+    needs: [install]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 10
+    - name: download workspace
+      uses: actions/upload-artifact@v1
+      with:
+        name: workspace_install
     - run: npm run lint
     - run: npm test
 
@@ -59,7 +96,7 @@ jobs:
     - name: download workspace
       uses: actions/upload-artifact@v1
       with:
-        name: workspace
+        name: workspace_build
     - name: release
       uses: ./.github/actions/release 
       env:
