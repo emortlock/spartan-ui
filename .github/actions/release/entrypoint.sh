@@ -54,10 +54,10 @@ fi
 git checkout master
 
 echo "INFO: running release script"
-npm run ci:release
+yarn ci:release
 
 echo "INFO: pushing new version"
 git push --no-verify --follow-tags origin master
 
 echo "INFO: publishing to npm"
-npm publish
+yarn publish
