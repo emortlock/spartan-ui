@@ -35,10 +35,13 @@ module.exports = {
     devtool: isDev && 'inline-source-map',
     module: {
       rules: [
-        { test: /\.(js|mjs|jsx|ts|tsx)$/, loader: 'babel-loader' },
+        {
+          test: /\.(js|mjs|jsx|ts|tsx)$/,
+          loader: require.resolve('babel-loader'),
+        },
         {
           test: /\.tsx?$/,
-          use: 'ts-loader',
+          use: require.resolve('ts-loader'),
           exclude: /node_modules/,
         },
       ],

@@ -13,8 +13,8 @@
   ],
   "scripts": {
     "ci:docs": "styleguidist build && node ./ops/docs",
-    "ci:test": "npm run lint && npm run test -- --coverage",
-    "ci:release": "npm run build && standard-version -m \"chore: v%s release [skip-ci]\" ",
+    "ci:test": "yarn lint && yarn test -- --coverage",
+    "ci:release": "yarn build && standard-version -m \"chore: v%s release [skip-ci]\" ",
     "build:watch": "tsdx watch",
     "build": "rimraf dist && tsdx build",
     "docs": "styleguidist build",
@@ -29,6 +29,8 @@
     "react-focus-lock": "^2.2.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@mortlock/prettier-config": "^1.0.0",
@@ -38,6 +40,7 @@
     "@types/react-dom": "^16.9.5",
     "@typescript-eslint/eslint-plugin": "^2.12.0",
     "@typescript-eslint/parser": "^2.12.0",
+    "@yarnpkg/pnpify": "^2.0.0-rc.17",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "copy-webpack-plugin": "^5.1.1",
@@ -51,7 +54,7 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.2.0",
     "gh-pages": "^2.2.0",
-    "husky": "^2.7.0",
+    "husky": "^4.2.1",
     "jest-dom": "^3.5.0",
     "prettier": "^1.19.1",
     "pretty-quick": "^1.11.1",
@@ -81,7 +84,6 @@
       "<rootDir>/build/setupTests.ts"
     ]
   },
-  "prettier": "@mortlock/prettier-config",
   "keywords": [
     "react",
     "react-components",
