@@ -26,7 +26,19 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
+      - run: yarn
       - run: yarn build
+
+  check-cache:
+    if: github.actor != 'emortlock'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: yarn install --check-cache
 
   test:
     if: github.event_name == 'pull_request'
@@ -37,6 +49,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10
+      - run: yarn
       - run: yarn build
       - run: yarn docs
       - run: yarn ci:test
@@ -50,6 +63,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10
+      - run: yarn
       - run: yarn ci:test
 
       - name: Run release action
