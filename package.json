@@ -18,7 +18,7 @@
     "build:watch": "tsdx watch",
     "build": "rimraf dist && tsdx build",
     "docs": "styleguidist build",
-    "lint": "eslint src/** -c eslint.config.js --ext ts,tsx",
+    "lint": "eslint src --ext ts,tsx",
     "start": "styleguidist server",
     "test": "tsdx test --env=jsdom"
   },
