@@ -51,8 +51,8 @@ jobs:
           node-version: 10
       - run: yarn
       - run: yarn build
-      - run: yarn docs
       - run: yarn ci:test
+      - run: yarn docs
 
   publish:
     if: github.event_name == 'push' && !contains(github.event.head_commit.message, '[skip-ci]')
