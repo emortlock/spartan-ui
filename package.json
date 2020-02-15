@@ -13,14 +13,14 @@
   ],
   "scripts": {
     "ci:docs": "styleguidist build && node ./ops/docs",
-    "ci:test": "yarn lint && yarn test -- --coverage",
+    "ci:test": "yarn lint && yarn test --coverage",
     "ci:release": "yarn build && standard-version -m \"chore: v%s release [skip-ci]\" ",
     "build:watch": "tsdx watch",
     "build": "rimraf dist && tsdx build",
     "docs": "styleguidist build",
     "lint": "eslint src --ext ts,tsx",
     "start": "styleguidist server",
-    "test": "tsdx test --env=jsdom"
+    "test": "yarn jest --env=jsdom"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -34,14 +34,16 @@
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@mortlock/prettier-config": "^1.0.0",
-    "@testing-library/react": "^8.0.9",
+    "@testing-library/react": "^9.4.0",
     "@types/jest": "^24.9.1",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
+    "@types/testing-library__react": "^9.1.2",
     "@typescript-eslint/eslint-plugin": "^2.12.0",
     "@typescript-eslint/parser": "^2.12.0",
     "@yarnpkg/pnpify": "^2.0.0-rc.17",
     "babel-eslint": "^10.0.3",
+    "babel-jest": "^25.1.0",
     "babel-loader": "^8.0.6",
     "copy-webpack-plugin": "^5.1.1",
     "demo": "link:./site",
@@ -56,6 +58,7 @@
     "eslint-plugin-react-hooks": "^2.2.0",
     "gh-pages": "^2.2.0",
     "husky": "^4.2.1",
+    "jest": "^25.1.0",
     "jest-dom": "^3.5.0",
     "pnp-webpack-plugin": "^1.6.0",
     "prettier": "^1.19.1",
@@ -67,6 +70,7 @@
     "rimraf": "^2.7.1",
     "spartan-ui": "link:./src",
     "standard-version": "^6.0.1",
+    "ts-jest": "^25.2.0",
     "ts-loader": "^6.2.1",
     "tsdx": "^0.12.3",
     "tslib": "^1.9.3",
@@ -78,14 +82,6 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "pretty-quick --staged"
     }
-  },
-  "jest": {
-    "testMatch": [
-      "<rootDir>/src/**/?(*.)+(spec|test).[jt]s?(x)"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/build/setupTests.ts"
-    ]
   },
   "keywords": [
     "react",
