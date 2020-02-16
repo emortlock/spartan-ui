@@ -1,7 +1,7 @@
 const ghpages = require('gh-pages')
 
 const { version } = require('../package.json')
-const { ACTIONS_DEPLOY_KEY, GITHUB_REPOSITORY } = process.env
+const { ACTIONS_DEPLOY_KEY, GITHUB_ACTOR, GITHUB_REPOSITORY } = process.env
 
 ghpages.publish('dist', {
   branch: 'gh-pages',
