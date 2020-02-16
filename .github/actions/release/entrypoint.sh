@@ -27,7 +27,7 @@ if [ -z "${NPM_AUTH_TOKEN}" ]; then
     exit 1
 fi
 
-YARN_CONFIG_USERCONFIG="$HOME/.yarnrc.yaml"
+YARN_CONFIG_USERCONFIG="$HOME/.yarnrc.yml"
 NPM_REGISTRY_URL="https://registry.yarnpkg.com"
 
 config="npmRegistries:
