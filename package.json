@@ -14,7 +14,7 @@
   "scripts": {
     "ci:docs": "styleguidist build && node ./ops/docs",
     "ci:test": "yarn lint && yarn test --coverage",
-    "ci:release": "yarn build && standard-version -m \"chore: v%s release [skip-ci]\" ",
+    "ci:release": "standard-version -a -m \"chore: v%s release [skip-ci]\" ",
     "build": "rimraf dist && rollup -c",
     "docs": "styleguidist build",
     "lint": "eslint src --ext ts,tsx",

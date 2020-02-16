@@ -7,4 +7,3 @@ node_modules
 dist
 docs
 coverage
-.size-snapshot.json
