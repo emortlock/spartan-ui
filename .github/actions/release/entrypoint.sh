@@ -60,4 +60,4 @@ echo "INFO: pushing new version"
 git push --no-verify --follow-tags origin master
 
 echo "INFO: publishing to npm"
-yarn publish
+yarn npm publish
