@@ -1,5 +1,5 @@
-const ghpages = require('gh-pages')
-
+const ghpages = require('@emortlock/gh-pages')
+const path = require('path')
 const { version } = require('../package.json')
 const { ACTIONS_DEPLOY_KEY, GITHUB_ACTOR, GITHUB_REPOSITORY } = process.env
 
@@ -14,6 +14,7 @@ ghpages.publish(
       email: `${GITHUB_ACTOR}@users.noreply.github.com`,
     },
     silent: true,
+    getCacheDir: () => path.join(process.cwd(), '.cache', 'gh-pages'),
   },
   err => {
     if (err) {

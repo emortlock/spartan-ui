@@ -1180,6 +1180,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emortlock/gh-pages@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "@emortlock/gh-pages@npm:2.3.0"
+  dependencies:
+    async: ^2.6.1
+    commander: ^2.18.0
+    email-addresses: ^3.0.1
+    filenamify-url: ^1.0.0
+    fs-extra: ^8.1.0
+    globby: ^6.1.0
+  bin:
+    gh-pages: bin/gh-pages.js
+    gh-pages-clean: bin/gh-pages-clean.js
+  checksum: 5aac94392d2497c2d5a7e026029c15d63cd180ac3485379d8aa62860baf0e7ab5cb83ea1184c3e22d147419ae80523bcf607815d5a1f2135873c42e284e2bd98
+  languageName: node
+  linkType: hard
+
 "@istanbuljs/load-nyc-config@npm:^1.0.0":
   version: 1.0.0
   resolution: "@istanbuljs/load-nyc-config@npm:1.0.0"
@@ -6195,23 +6212,6 @@ fsevents@^2.1.2:
   dependencies:
     assert-plus: ^1.0.0
   checksum: dc1d4184d1b3ea565b2f223542615bd2c16905563827172e2ca9a0e2e0dcc1173407b0523ca15dbd53bf8b75b4485a1815ccb0bfeb4668e1d2520899cb5c57f5
-  languageName: node
-  linkType: hard
-
-"gh-pages@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "gh-pages@npm:2.2.0"
-  dependencies:
-    async: ^2.6.1
-    commander: ^2.18.0
-    email-addresses: ^3.0.1
-    filenamify-url: ^1.0.0
-    fs-extra: ^8.1.0
-    globby: ^6.1.0
-  bin:
-    gh-pages: bin/gh-pages.js
-    gh-pages-clean: bin/gh-pages-clean.js
-  checksum: b57c061cd47d4c72e3d6c4fd1c1ed7b59862e9a07d397756a8a60674d65b42d30250960ac0a45c752de39d7d9ca9b4d8a7e48c45e8d794b8e8ad1e34c010c689
   languageName: node
   linkType: hard
 
@@ -12347,6 +12347,7 @@ resolve@1.1.7:
     "@babel/preset-env": ^7.8.4
     "@commitlint/cli": ^8.3.5
     "@commitlint/config-conventional": ^8.3.4
+    "@emortlock/gh-pages": ^2.3.0
     "@mortlock/prettier-config": ^1.0.0
     "@testing-library/react": ^9.4.0
     "@types/jest": ^24.9.1
@@ -12377,7 +12378,6 @@ resolve@1.1.7:
     eslint-plugin-prettier: ^3.1.0
     eslint-plugin-react: ^7.14.3
     eslint-plugin-react-hooks: ^2.2.0
-    gh-pages: ^2.2.0
     husky: ^4.2.1
     jest: ^25.1.0
     jest-dom: ^3.5.0

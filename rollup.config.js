@@ -74,7 +74,7 @@ export function createRollupConfig(format, env) {
       },
       typescript({
         typescript: require('typescript'),
-        cacheRoot: `./node_modules/.cache/.rts2_cache_${format}/`,
+        cacheRoot: `./.cache/.rts2_${format}/`,
       }),
       babel({
         exclude: /node_modules/,

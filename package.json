@@ -12,7 +12,7 @@
     "dist"
   ],
   "scripts": {
-    "ci:docs": "styleguidist build && node ./ops/docs",
+    "ci:docs": "yarn node ops/docs",
     "ci:test": "yarn lint && yarn test --coverage",
     "ci:release": "standard-version -a --releaseCommitMessageFormat=\"chore: {{currentTag}} release [skip-ci]\" ",
     "build": "rimraf dist && rollup -c",
@@ -32,6 +32,7 @@
     "@babel/preset-env": "^7.8.4",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
+    "@emortlock/gh-pages": "^2.3.0",
     "@mortlock/prettier-config": "^1.0.0",
     "@testing-library/react": "^9.4.0",
     "@types/jest": "^24.9.1",
@@ -62,7 +63,6 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.2.0",
-    "gh-pages": "^2.2.0",
     "husky": "^4.2.1",
     "jest": "^25.1.0",
     "jest-dom": "^3.5.0",
