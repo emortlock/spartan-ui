@@ -18,27 +18,25 @@ ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
 echo "${ACTIONS_DEPLOY_KEY}" > /root/.ssh/id_rsa
 chmod 400 /root/.ssh/id_rsa
 
-# npm Setup
+# Yarn Setup
 
-echo "INFO: setting up npm"
+echo "INFO: setting up yarn"
 
 if [ -z "${NPM_AUTH_TOKEN}" ]; then
     echo "error: not found NPM_AUTH_TOKEN"
     exit 1
 fi
 
-NPM_CONFIG_USERCONFIG="${NPM_CONFIG_USERCONFIG-"$HOME/.npmrc"}"
-NPM_REGISTRY_URL="${NPM_REGISTRY_URL-registry.npmjs.org}"
-NPM_STRICT_SSL="${NPM_STRICT_SSL-true}"
-NPM_REGISTRY_SCHEME="https"
-if ! $NPM_STRICT_SSL
-then
-    NPM_REGISTRY_SCHEME="http"
-fi
+YARN_CONFIG_USERCONFIG="$HOME/.yarnrc.yaml"
+NPM_REGISTRY_URL="https://registry.yarnpkg.com"
 
-printf "//%s/:_authToken=%s\\nregistry=%s\\nstrict-ssl=%s" "$NPM_REGISTRY_URL" "$NPM_AUTH_TOKEN" "${NPM_REGISTRY_SCHEME}://$NPM_REGISTRY_URL" "${NPM_STRICT_SSL}" > "$NPM_CONFIG_USERCONFIG"
-chmod 0600 "$NPM_CONFIG_USERCONFIG"
+config="npmRegistries:
+  \"$NPM_REGISTRY_URL\":
+    npmAuthToken: $NPM_AUTH_TOKEN
+"
 
+printf "$config" > "$YARN_CONFIG_USERCONFIG"
+chmod 0600 "$YARN_CONFIG_USERCONFIG"
 
 # Git Setup
 echo "INFO: setting up git"
