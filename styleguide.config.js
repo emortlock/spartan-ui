@@ -1,6 +1,7 @@
 const path = require('path')
 
 const CopyPlugin = require('copy-webpack-plugin')
+const PnpWebpackPlugin = require(`pnp-webpack-plugin`)
 
 const { NODE_ENV } = process.env
 
@@ -35,10 +36,13 @@ module.exports = {
     devtool: isDev && 'inline-source-map',
     module: {
       rules: [
-        { test: /\.(js|mjs|jsx|ts|tsx)$/, loader: 'babel-loader' },
+        {
+          test: /\.(js|mjs|jsx|ts|tsx)$/,
+          loader: require.resolve('babel-loader'),
+        },
         {
           test: /\.tsx?$/,
-          use: 'ts-loader',
+          use: require.resolve('ts-loader'),
           exclude: /node_modules/,
         },
       ],
@@ -48,11 +52,10 @@ module.exports = {
         { from: path.resolve(__dirname, 'site', 'assets'), to: 'assets' },
       ]),
     ],
+    resolveLoader: {
+      plugins: [PnpWebpackPlugin.moduleLoader(module)],
+    },
     resolve: {
-      alias: {
-        'spartan-ui': path.resolve(__dirname, 'src'),
-        demo: path.resolve(__dirname, 'site'),
-      },
       extensions: [
         'web.mjs',
         'mjs',
@@ -66,6 +69,7 @@ module.exports = {
         'web.jsx',
         'jsx',
       ],
+      plugins: [PnpWebpackPlugin],
     },
   },
 }

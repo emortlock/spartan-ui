@@ -26,8 +26,19 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-      - run: npm ci
-      - run: npm run build
+      - run: yarn
+      - run: yarn build
+
+  check-cache:
+    if: github.actor != 'emortlock'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: yarn install --check-cache
 
   test:
     if: github.event_name == 'pull_request'
@@ -38,10 +49,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10
-      - run: npm ci
-      - run: npm run build
-      - run: npm run docs
-      - run: npm run ci:test
+      - run: yarn
+      - run: yarn build
+      - run: yarn ci:test
+      - run: yarn docs
 
   publish:
     if: github.event_name == 'push' && !contains(github.event.head_commit.message, '[skip-ci]')
@@ -52,8 +63,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10
-      - run: npm ci
-      - run: npm run ci:test
+      - run: yarn
+      - run: yarn ci:test
 
       - name: Run release action
         uses: ./.github/actions/release
@@ -61,6 +72,6 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           ACTIONS_DEPLOY_KEY: ${{secrets.ACTIONS_DEPLOY_KEY}}
           NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-      - run: npm run ci:docs
+      - run: yarn ci:docs
         env:
           ACTIONS_DEPLOY_KEY: ${{secrets.ACTIONS_DEPLOY_KEY}}
