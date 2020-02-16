@@ -12,7 +12,7 @@
     "dist"
   ],
   "scripts": {
-    "ci:docs": "yarn node ops/docs",
+    "ci:docs": "styleguidist build && yarn node ops/docs",
     "ci:test": "yarn lint && yarn test --coverage",
     "ci:release": "standard-version -a --releaseCommitMessageFormat=\"chore: {{currentTag}} release [skip-ci]\" ",
     "build": "rimraf dist && rollup -c",
