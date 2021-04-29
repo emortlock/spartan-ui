@@ -1,0 +1,17 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "@types/react"
+    versions:
+    - 17.0.0
+  - dependency-name: tslib
+    versions:
+    - 2.0.3
+  - dependency-name: "@types/jest"
+    versions:
+    - 25.2.3
