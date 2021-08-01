@@ -36,7 +36,7 @@
     "@mortlock/prettier-config": "^1.0.0",
     "@testing-library/react": "^9.4.0",
     "@types/jest": "^24.9.1",
-    "@types/react": "^16.9.19",
+    "@types/react": "^17.0.15",
     "@types/react-dom": "^16.9.5",
     "@types/rollup-plugin-commonjs": "9.3.1",
     "@types/rollup-plugin-json": "3.0.2",
